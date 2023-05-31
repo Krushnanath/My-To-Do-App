@@ -3,7 +3,7 @@ function add() {
   var task = {
     // document.write(typeof(arr));
     disc: document.getElementById("description").value,
-    marked: document.getElementById("mark").value,
+    marked: "unchecked"
   };
 
 
@@ -57,7 +57,7 @@ function display() {
     }
     for (var i = 0; i < data.length; i++) {
       todo +=
-        '<input type="checkbox" id="mark" onchange="completed('+i+')"></input>' +
+        '<input type="checkbox" id="mark"  onchange="completed('+i+')" '+data[i].marked +'></input>' +
         data[i].disc +
         '<button onclick="del(' +
         i +
@@ -72,7 +72,7 @@ function display() {
 function completed(i){
     var data = localStorage.getItem("mydata");
     data = JSON.parse(data);
-    data[i].marked=false;
+    data[i].marked="checked";
     localStorage.setItem("mydata", JSON.stringify(data));
     
 }

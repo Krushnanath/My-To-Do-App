@@ -3,10 +3,8 @@ function add() {
   var task = {
     // document.write(typeof(arr));
     disc: document.getElementById("description").value,
-    marked: "unchecked"
+    marked: "unchecked",
   };
-
-
 
   var data = localStorage.getItem("mydata");
 
@@ -56,12 +54,37 @@ function display() {
       todo = "No items found.";
     }
     for (var i = 0; i < data.length; i++) {
-      todo +=
-        '<input type="checkbox" id="mark"  onchange="completed('+i+')" '+data[i].marked +'></input>' +
-        data[i].disc +
-        '<button onclick="del(' +
-        i +
-        ')">delete</button><br>';
+      if (data[i].marked == "checked") {
+        todo +=
+          '<div class="item" >' +
+          '<input type="checkbox" id="mark" onchange="completed(' +
+          i +
+          ')" ' +
+          data[i].marked +
+          "></input>" +
+          '<label for="mark" id="completed">' +
+          data[i].disc +
+          "</label>" +
+          '<button onclick="del(' +
+          i +
+          ')">Remove Task</button>' +
+          "</div>";
+      } else {
+        todo +=
+          '<div class="item">' +
+          '<input type="checkbox" id="mark" onchange="completed(' +
+          i +
+          ')" ' +
+          data[i].marked +
+          "></input>" +
+          "<label>" +
+          data[i].disc +
+          "</label>" +
+          '<button onclick="del(' +
+          i +
+          ')">Remove task</button>' +
+          "</div>";
+      }
     }
   } else {
     todo = "No items found.";
@@ -69,10 +92,10 @@ function display() {
 
   document.getElementById("list").innerHTML = todo;
 }
-function completed(i){
-    var data = localStorage.getItem("mydata");
-    data = JSON.parse(data);
-    data[i].marked="checked";
-    localStorage.setItem("mydata", JSON.stringify(data));
-    
+function completed(i) {
+  var data = localStorage.getItem("mydata");
+  data = JSON.parse(data);
+  data[i].marked = "checked";
+  localStorage.setItem("mydata", JSON.stringify(data));
+  display();
 }

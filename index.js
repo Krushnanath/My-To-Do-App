@@ -67,7 +67,7 @@ function display() {
           "</label>" +
           '<button onclick="del(' +
           i +
-          ')">Remove Task</button>' +
+          ')">delete</button>' +
           "</div>";
       } else {
         todo +=
@@ -82,7 +82,7 @@ function display() {
           "</label>" +
           '<button onclick="del(' +
           i +
-          ')">Remove task</button>' +
+          ')">delete</button>' +
           "</div>";
       }
     }
